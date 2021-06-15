@@ -272,7 +272,9 @@ def cluster_terms(km, top_clusters=4):
     print()
 cluster_terms(best_km)
 
-# TODO Give a TSNE visualisation
+# If you want to visualise the top features of the clusters, rather
+# than our simple printing them out, see
+# https://buhrmann.github.io/tfidf-analysis.html
 
 # ----------------------------------------------------------------------------
 
