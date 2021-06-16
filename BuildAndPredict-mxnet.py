@@ -23,6 +23,7 @@
 # Setup step - load all our libraries
 from mxnet import nd
 from mxnet.contrib.text import embedding
+import json
 
 # Build a GloVe word embedding for our text
 # This will take some time on the first run, as it downloads the
@@ -78,15 +79,48 @@ print("")
 
 # ----------------------------------------------------------------------------
 
-# Load our articles
+# Load our talks
 years = (2021,2020,2019,2018,2017,2016,2015)
+talks = []
 for year in years:
     filename = "data/%d/sessions.json" % year
     print("Loading %s" % filename)
-    # TODO Actually load the json
+    with open(filename) as f:
+       d = json.load(f)
+       for talk in d:
+            talk["year"] = year
+            talks.append(talk)
+
+# For each talk title, what are the key words
+#  based on the embedding?
+# Project the title through the embedding space,
+#  and see what words are by where we end up
+# Just run for the first few talks to demo
+for talk in talks[:15]:
+    title = talk["title"]
+
+    # Get the vectors for each word in the title
+    # TODO Handle unknown words better
+    # TODO Tokenize better
+    title_vectors = glove.get_vecs_by_tokens(title.split(" "))
+    num_words = title_vectors.shape[0]
+
+    # Project the title text through the space, and renormalise
+    # Is mean the best? Checking some research papers recommended...
+    overall = title_vectors.mean(0)
+
+    # What words are near there?
+    nearby_count = 5
+    topk, cos = find_nearest(glove.idx_to_vec, overall, nearby_count)
+    nearby_words = [glove.idx_to_token[idx] for idx in topk]
+    print(talk)
+    print(nearby_words)
+    print("")
 
 # Convert the text into vectors using the embeddings
 # Any words not known by the embedding are ignored
+# For now, just use the titles
+talk_titles = []
 # TODO
 
 # ----------------------------------------------------------------------------
