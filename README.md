@@ -22,8 +22,11 @@ work fairly well, and this should guide you through the key concepts.
 
 `BuildAndPredict-mxnet.py` uses Apache MXNet to build Word Embeddings
 (based on GloVe and some pre-trained data taken from Wikipedia), then
-uses that for inference, clustering and recommendation. Extending it
-to work with BERT is left as an exercise for the reader...
+uses that for inference, clustering and recommendation. 
+
+Extending the mxnet code to work with BERT and ELMO is left as an 
+exercise for the reader... You'll want to start at 
+https://mxnet.apache.org/versions/1.7/api/python/docs/tutorials/packages/gluon/text/index.html
 
 ### Sample Data - BBuzz Talks
 Data on all Berlin Buzzwords talks from 2015-2021, extracted into JSON, can

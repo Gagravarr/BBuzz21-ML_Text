@@ -85,6 +85,19 @@ for year in years:
     print("Loading %s" % filename)
     # TODO Actually load the json
 
+# Convert the text into vectors using the embeddings
+# Any words not known by the embedding are ignored
+# TODO
+
 # ----------------------------------------------------------------------------
 
+# TSNE of talk titles
 # TODO
+
+# ----------------------------------------------------------------------------
+
+# Now, you're ready to move onto more advanced things!
+# Take a look at
+#  ELMo - https://nlp.gluon.ai/examples/sentence_embedding/elmo_sentence_representation.html
+#  BERT - https://nlp.gluon.ai/examples/sentence_embedding/bert.html
+# And start reading some NLP scientific papers!
