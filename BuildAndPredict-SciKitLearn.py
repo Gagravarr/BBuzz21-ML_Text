@@ -375,5 +375,15 @@ visualise_tfidf_tsne(tfidf_word.matrix)
 
 # ----------------------------------------------------------------------------
 
+# TODO Try using OPICS (Ordering Points To Identify the Clustering Structure)
+#  to try to identify talk clusters
+# Will need manual review to help identify the hyperparameters, especially
+#  around the cluster difference
+# Once clusters, then pull out the top words for each cluster, identify
+#  likely talks from clusters etc
+# https://scikit-learn.org/stable/modules/generated/sklearn.cluster.OPTICS.html
+
+# ----------------------------------------------------------------------------
+
 # While we could go further with SciKitLearn, it's time to 
 #  swap over to Apache MXNet!
