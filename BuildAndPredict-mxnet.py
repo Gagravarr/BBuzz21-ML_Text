@@ -23,6 +23,7 @@
 # Setup step - load all our libraries
 from mxnet import nd
 from mxnet.contrib.text import embedding
+import random
 import json
 
 # Build a GloVe word embedding for our text
@@ -91,10 +92,9 @@ for year in years:
             talk["year"] = year
             talks.append(talk)
 
-# For each talk title, what are the key words
-#  based on the embedding?
-# Project the title through the embedding space,
-#  and see what words are by where we end up
+# For each talk title, what are the key words  based on the embedding?
+# Project the title through the embedding space, and see what words are
+#  by where we end up
 # Just run for the first few talks to demo
 for talk in talks[:15]:
     title = talk["title"]
@@ -120,8 +120,32 @@ for talk in talks[:15]:
 # Convert the text into vectors using the embeddings
 # Any words not known by the embedding are ignored
 # For now, just use the titles
-talk_titles = []
-# TODO
+#
+# Notes for future improvements
+#  - Ideally we should weight the words, eg with a TF-IDF approach
+#  - Is a mean of the embedding vectors really the right way to 
+#    combine? Further research needed
+#  - We should include the abstract as well as the title
+title_vectors = nd.zeros( (glove.vec_len, len(talks)) )
+for idx, talk in enumerate(talks):
+    tokens = talk["title"].split()
+    token_vectors = glove.get_vecs_by_tokens(tokens)
+    title_vectors[:,idx] = token_vectors.sum(0)
+print(title_vectors)
+
+
+# For a given talk, what other talks are nearby?
+wanted = random.randint(0, len(talks)-1)
+print("Talks with similar embeddings to talk %d" % wanted)
+print(talks[wanted])
+
+similar, scores = find_nearest(title_vectors, title_vectors[:,wanted], 5)
+for idx in similar:
+   if ix == wanted:
+      continue
+   talk = talks[idx]
+   print("%d - %d - %s" % (idx, talk["year"], talk["title"]))
+
 
 # ----------------------------------------------------------------------------
 
