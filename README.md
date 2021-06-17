@@ -11,8 +11,9 @@ The sample / example code, in Python, for the areas covered in the talk.
 These should go into a lot more detail than I had time for in the talk, 
 which was limited to 30 minutes! 
 
-The code needs Python 3, but should run fine both in normal Python
-and IPython / Jupyter.
+The code needs Python 3. Each program is packaged twice, with the same
+code in each. Use the `.py` version for normal Python use, and the 
+`.ipynb` if you want to run it interactively in IPython / Jupyter.
 
 #### SkiKitLearn
 
@@ -47,4 +48,4 @@ scripts for the web scraping can also be found there.
 Talk data is copyright Newthinking, Plain Schwarz and the Speakers
 
 ### Slides
-Slides as PDF, once finished...
+Slides as PDF are also available!
