@@ -125,8 +125,14 @@ tfidf_char = build_tfidf(tf_settings_char, talks["learn"])
 print(tfidf_word.tfidf.get_feature_names()[:10])
 print(tfidf_char.tfidf.get_feature_names()[:10])
 
-# TODO Find the highest values in the TF-IDF matrix, and show
+# Find the highest values in the TF-IDF matrix, and show
 #  the terms at those indexes
+def top_terms(tfidf, count):
+   importance = np.argsort(np.asarray(tfidf.matrix.sum(axis=0)).ravel())[::-1]
+   return [ tfidf.tfidf.get_feature_names()[idx] for 
+            idx in importance[:count] ]
+print(top_terms(tfidf_word, 10))
+print(top_terms(tfidf_char, 10))
 
 # ----------------------------------------------------------------------------
 
