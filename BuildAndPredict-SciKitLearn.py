@@ -121,8 +121,12 @@ tfidf_word = build_tfidf(tf_settings_word, talks["learn"])
 tfidf_char = build_tfidf(tf_settings_char, talks["learn"])
 
 # Let's see what some of our terms are
+# Check alphabetically
 print(tfidf_word.tfidf.get_feature_names()[:10])
 print(tfidf_char.tfidf.get_feature_names()[:10])
+
+# TODO Find the highest values in the TF-IDF matrix, and show
+#  the terms at those indexes
 
 # ----------------------------------------------------------------------------
 
