@@ -141,7 +141,7 @@ models = []
 for tfidf in (tfidf_word, tfidf_char):
     print("Building model for: %s" % tfidf.settings)
     
-    # Build a model, using Multinomial Naive Bayse
+    # Build a model, using Multinomial Naive Bayes
     # Model the text of the talk, to predict the talk's index
     classifier = MultinomialNB()
     model = make_pipeline(tfidf.tfidf, classifier)
